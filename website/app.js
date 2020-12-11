@@ -14,7 +14,7 @@ const apiUrl = "http://localhost:8888/";
 const catchError = (error) => console.error ('An error occurs =>', error);
 
 // Event listener to add function to existing HTML DOM element
-document.getElementById('generate').addEventListener(click, Generating);
+document.getElementById('generate').addEventListener('click', Generating);
 
 //post data to api
 function Generating() {
@@ -38,19 +38,19 @@ function Generating() {
 
 // function to get zip information
 async function getZipInfo(zipCode) {
-    return await fetch (`http://api.openweathermap.org/data/205/forecast?zip=${zipCode}${apiKey}`).jason()
+    return await fetch (`http://api.openweathermap.org/data/2.5/forecast?zip=${zipCode}${apiKey}`).json()
 };
 
 //post data to server
 async function postToServer(dataInfo) {
     let response = await fetch(`${apiUrl}postData`, {
         method: 'POST',
-        headers: {'Content-Type': 'application/jason'},
+        headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(dataInfo)
     });
     try {
 
-        response.jason().then(dataInfo => {
+        response.json().then(dataInfo => {
             if (response.ok) {
                 updateUI();
             }

@@ -9,6 +9,9 @@ const contentElement = document.getElementById('content');
 const apiKey = "&appid=31fd5ea5b2b3c07da298255987fb620a&units=imperial";
 const apiUrl = "http://localhost:8888/";
 
+//Get the date
+let d = new Date();
+let newDate = d.getMonth() + '.' + d.getDate() + '.' + d.getFullYear();
 
 //function return error
 const catchError = (error) => console.error ('An error occurs =>', error);
@@ -38,7 +41,9 @@ function Generating() {
 
 // function to get zip information
 async function getZipInfo(zipCode) {
-    return await fetch (`http://api.openweathermap.org/data/2.5/forecast?zip=${zipCode}${apiKey}`).json()
+    res = await fetch (`http://api.openweathermap.org/data/2.5/forecast?zip=${zipCode}${apiKey}`)
+    result = await res.json()
+    return result
 };
 
 //post data to server
@@ -67,7 +72,7 @@ async function postToServer(dataInfo) {
 async function updateUI() {
     let response = await fetch(`${apiUrl}All`);
     try {
-        response.jason().then(dataInfo => {
+        response.json().then(dataInfo => {
             dateElement.innerHTML = `Data is: ${dataInfo.date}`;
             tempElement.innerHTML = `Temp is: ${dataInfo.temp}`;
             contentElement.innerHTML = `Feelings is: ${dataInfo.content}`;

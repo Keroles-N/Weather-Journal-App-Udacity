@@ -19,8 +19,8 @@ document.getElementById('generate').addEventListener('click', Generating);
 //post data to api
 function Generating() {
     let dataInfo = {
-        zipCode: zipCodeElement.Value,
-        content: feelingsCodeElement.Value,
+        zipCode: zipCodeElement.value,
+        content: feelingsCodeElement.value,
         date: new Date()
     };
 
